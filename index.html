@@ -45,6 +45,12 @@
 <section class="container" id="menu">
     <h2>Speisekarte</h2>
 
+    <button onclick="zeigePDF()">Speisekarte anzeigen</button>
+
+    <div id="pdfContainer" style="display:none; margin-top:20px;">
+        <iframe src="speisekarte.pdf" width="100%" height="500px"></iframe>
+    </div>
+    
     <!-- Desktop Ansicht -->
     <div class="menu-preview">
         <h3>Kaffee</h3>
