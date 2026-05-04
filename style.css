@@ -36,11 +36,13 @@ nav a:hover {
 /* HERO */
 .hero {
     background: url("Biedenkopf_bunt.1a.png") center/cover no-repeat;
-    height: 400px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
+    max-width: 600px;
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 10px;
+
     text-align: center;
 }
 
