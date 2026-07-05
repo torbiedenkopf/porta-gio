@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Porta Gio Café Bistro Biedenkopf</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <div class="container header-inner">
+        <h1>Porta Gio</h1>
+        <nav>
+            <a href="#home">Start</a>
+            <a href="#aktuell">Aktuelles</a>
+            <a href="#menu">Speisekarte</a>
+            <a href="#info">Info</a>
+            <a href="#contact">Kontakt</a>
+        </nav>
+    </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="home">
+    <div class="hero-text">
+        <h2>Die kleine Auszeit</h2>
+        <p>Das Portal für die etwas andere Auszeit zwischendurch</p>
+    </div>
+</section>
+
+<!-- INTRO -->
+<section class="container">
+    <h2>Willkommen</h2>
+    <p>
+        Treten Sie ein und vergessen Sie für eine kurze Zeit den Alltag.
+        Entspannen Sie bei einer guten Tasse handgebrühten Kaffee und
+        gönnen Sie sich eine süße oder herzhafte Kleinigkeit aus eigener
+        Herstellung.
+    </p>
+    <p>
+        Tipp:<br> 
+        Mehrmals im Jahr machen wir eine Einkaufstour nach Bayern
+        und Franken und bringen tolle Biere von dort mit. Es lohn sich
+        also, immer wieder einmal vorbeizuschauen. Die Biere, die wir
+        mitbringen, finden Sie unter "Aktuelles". Und zögern Sie nicht
+        zu lange, es gibt immer nur eine begrenzte Menge. Wenn weg,
+        dann weg.
+    </p>
+</section>
+
+<!-- Aktuelles -->
+<section class="container" id="aktuell">
+    <div class="hero-text">
+        <h2>Aktuelle Aktionen</h2>
+
+    <!-- <button onclick="zeigePDF()">Aktionen anzeigen</button> -->
+
+<object data="Biedenkopf_Menue_Biere.svg" type="image/svg+xml" width="100%" height="500px">
+    <p>Datei kann nicht angezeigt werden.
+    <a href="Biedenkopf_Menue_Biere.svg" target="_blank">Hier öffnen</a></p>
+</object>
+        
+    </div>
+</section>
+
+<!-- SPEISEKARTE -->
+<section class="container" id="menu">
+    <h2>Speisekarte</h2>
+
+    <!-- <button onclick="zeigePDF()">Speisekarte anzeigen</button> -->
+
+<object data="Biedenkopf_Speisekarte.pdf" type="application/pdf" width="100%" height="500px">
+    <p>PDF kann nicht angezeigt werden.
+    <a href="Biedenkopf_Speisekarte.pdf" target="_blank">Hier öffnen</a></p>
+</object>
+    
+<section id="contact">
+    <h2>Kontakt</h2>
+    <form action="#" method="POST">
+        <input type="text" placeholder="Name" required>
+        <input type="email" placeholder="E-Mail" required>
+        <textarea placeholder="Nachricht" required></textarea>
+        <button type="submit">Senden</button>
+    </form>
+</section>
+    
+<!-- FOOTER / IMPRESSUM -->
+<footer>
+    <div class="container">
+        <p><strong>Impressum</strong></p>
+        <p>
+            Porta Gio Café Bistro<br>
+            Giovanna Willer<br>
+            Galgenbergstrasse 2<br>
+            73054 Biedenkopf<br><br>
+
+            Telefon: +49 89 123456<br>
+            E-Mail: cafebistro@portagio.de<br><br>
+
+            Umsatzsteuer-ID: DE123456789<br>
+            Verantwortlich für den Inhalt: Claus Willer
+        </p>
+
+        <p>© 2026 Porta Gio</p>
+    </div>
+</footer>
+
+<script>
+function zeigePDF() {
+    document.getElementById("pdfContainer").style.display = "block";
+}
+</script>
+
+</body>
+</html>
