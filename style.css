@@ -1,3 +1,4 @@
+/* GLOBAL */
 body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -11,6 +12,7 @@ body {
     padding: 40px 20px;
 }
 
+/* HEADER */
 header {
     background: #2c2c2c;
     color: white;
@@ -34,22 +36,43 @@ nav a:hover {
 }
 
 /* HERO */
-.hero {
-    background: url("Biedenkopf_bunt.1a.png") center/cover no-repeat;
-    max-width: 600px;
-    width: 100%;
-    height: auto;
-    display: block;
-    margin: 0 auto;
-    border-radius: 10px;
+/* WICHTIG: alte .hero-Regel mit background-image komplett löschen! */
 
-    text-align: center;
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.hero-left,
+.hero-right {
+  width: 12%;      /* Bildgröße links/rechts */
+  height: auto;
+  display: block;
+  border-radius: 10px;
 }
 
 .hero-text {
-    background: rgba(0,0,0,0.4);
-    padding: 20px;
-    border-radius: 10px;
+  width: 55%;
+  text-align: center;
+  color: white;
+  background: rgba(0,0,0,0.4);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.aktuell-title {
+  text-align: center;
+  color: white;
+  background: rgba(0,0,0,0.4);
+  padding: 20px;
+  border-radius: 10px;
+}
+  margin-bottom: 20px;
 }
 
 .btn {
@@ -61,11 +84,14 @@ nav a:hover {
     text-decoration: none;
 }
 
-/* SECTIONS */
+/* SECTIONS — EINHEITLICHE BREITE */
 section {
     background: white;
     margin: 20px auto;
     border-radius: 10px;
+    padding: 20px;
+    box-sizing: border-box;
+    /* ❗ WICHTIG: KEINE max-width HIER! */
 }
 
 /* MENU */
@@ -104,25 +130,43 @@ section {
 form {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
 }
 
-input, textarea {
+input,
+textarea {
+    width: 100%;
     padding: 10px;
+    font-size: 1rem;
+    box-sizing: border-box;
     border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
 button {
-    padding: 10px;
-    background: #2c2c2c;
+    padding: 12px;
+    font-size: 1rem;
+    background-color: #2c2c2c;
     color: white;
     border: none;
+    border-radius: 4px;
     cursor: pointer;
 }
 
 button:hover {
-    background: #f4c542;
+    background-color: #f4c542;
     color: black;
+}
+
+/* FORM-MELDUNGEN */
+#success {
+    color: green;
+    margin-top: 10px;
+}
+
+#error {
+    color: red;
+    margin-top: 10px;
 }
 
 /* FOOTER */
@@ -133,7 +177,7 @@ footer {
 }
 
 /* MOBILE */
-@media (max-width: 700px) {
+@media (max-width: 800px) {
 
     .header-inner {
         flex-direction: column;
@@ -148,6 +192,6 @@ footer {
     }
 
     .menu-pdf {
-        display: none; /* PDF ausblenden auf Mobile */
+        display: none;
     }
 }

@@ -23,11 +23,15 @@
 </header>
 
 <!-- HERO -->
-<section class="hero" id="home">
+<section class="hero">
+    <img src="Biedenkopf_bunt.1a.png" class="hero-left" alt="">
+    
     <div class="hero-text">
         <h2>Die kleine Auszeit</h2>
         <p>Das Portal für die etwas andere Auszeit zwischendurch</p>
     </div>
+
+    <img src="Biedenkopf_bunt.1a.png" class="hero-right" alt="">
 </section>
 
 <!-- INTRO -->
@@ -40,31 +44,28 @@
         Herstellung.
     </p>
     <p>
-        Tipp:<br> 
+        <strong>Tipp:</strong><br> 
         Mehrmals im Jahr machen wir eine Einkaufstour nach Bayern
         und Franken und bringen tolle Biere von dort mit. Es lohn sich
         also, immer wieder einmal vorbeizuschauen. Die Biere, die wir
         mitbringen, finden Sie unter "Aktuelles". Und zögern Sie nicht
-        zu lange, es gibt immer nur eine begrenzte Menge. Wenn weg,
+        zu lange, es gibt immer nur eine begrenzte Menge. Wenn weg -
         dann weg.
     </p>
 </section>
 
 <!-- Aktuelles -->
 <section class="container" id="aktuell">
-    <div class="hero-text">
-        <h2>Aktuelle Aktionen</h2>
+    <h2 class="aktuell-title">Aktuelle Aktionen</h2>
 
-    <!-- <button onclick="zeigePDF()">Aktionen anzeigen</button> -->
-
-<object data="Biedenkopf_Menue_Biere.svg" type="image/svg+xml" width="100%" height="500px">
-    <p>Datei kann nicht angezeigt werden.
-    <a href="Biedenkopf_Menue_Biere.svg" target="_blank">Hier öffnen</a></p>
-</object>
-        
-    </div>
+    <object data="Biedenkopf_mitMenue_Bieraktionen.col.wasserfarben.svg"
+            type="image/svg+xml"
+            width="100%"; height="500px">
+        <p>Datei kann nicht angezeigt werden.
+        <a href="Biedenkopf_mitMenue_Bieraktionen.col.wasserfarben.svg" target="_blank">Hier öffnen</a></p>
+    </object>
 </section>
-
+        
 <!-- SPEISEKARTE -->
 <section class="container" id="menu">
     <h2>Speisekarte</h2>
@@ -75,36 +76,30 @@
     <p>PDF kann nicht angezeigt werden.
     <a href="Biedenkopf_Speisekarte.pdf" target="_blank">Hier öffnen</a></p>
 </object>
+</section>
     
-<section id="contact">
+<div class="container">
+
+  <section id="contact">
     <h2>Kontakt</h2>
-    <form action="#" method="POST">
-        <input type="text" placeholder="Name" required>
-        <input type="email" placeholder="E-Mail" required>
-        <textarea placeholder="Nachricht" required></textarea>
+
+    <form id="contact-form" action="https://formspree.io/f/mzdloagg" method="POST">
+        <input type="text" name="name" placeholder="Name" required>
+        <input type="email" name="email" placeholder="E-Mail" required>
+        <textarea name="message" placeholder="Nachricht" required></textarea>
         <button type="submit">Senden</button>
     </form>
-</section>
 
-<form action="https://formspree.io/f/mzdloagg" method="POST">
-<section id="contact">
-  <h2>Kontakt</h2>
+    <p id="success" style="display:none; color:green;">
+      Danke! Deine Nachricht wurde erfolgreich gesendet.
+    </p>
 
-  <form id="contact-form" action="https://formspree.io/f/mzdloagg" method="POST">
-      <input type="text" name="name" placeholder="Name" required>
-      <input type="email" name="email" placeholder="E-Mail" required>
-      <textarea name="message" placeholder="Nachricht" required></textarea>
-      <button type="submit">Senden</button>
-  </form>
+    <p id="error" style="display:none; color:red;">
+      Leider konnte die Nachricht nicht gesendet werden. Bitte versuche es später erneut.
+    </p>
+  </section>
 
-  <p id="success" style="display:none; color:green;">
-    Danke! Deine Nachricht wurde erfolgreich gesendet.
-  </p>
-
-  <p id="error" style="display:none; color:red;">
-    Leider konnte die Nachricht nicht gesendet werden. Bitte versuche es später erneut.
-  </p>
-</section>
+</div>
 
 <script>
   const form = document.getElementById("contact-form");
