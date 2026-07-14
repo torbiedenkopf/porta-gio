@@ -254,7 +254,7 @@ margin-right:auto;
 
 section{
 
-scroll-margin-top:150px;
+scroll-margin-top:90px;
 
 }
 /* ==========================================================
@@ -420,6 +420,18 @@ gap:2rem;
 /* ---------- SMARTPHONE ---------- */
 
 @media (max-width:700px){
+
+.header-inner{
+flex-direction:column;
+justify-content:center;
+padding:.8rem 0;
+}
+
+nav{
+justify-content:center;
+gap:.5rem;
+font-size:.85rem;
+}
 
 body{
 font-size:15px;
