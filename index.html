@@ -1,266 +1,229 @@
-```html
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Porta Gio Café Bistro Biedenkopf</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Porta Gio Café Bistro Biedenkopf</title>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- =======================================================
-     HEADER
-======================================================== -->
 <header>
-    <div class="container header-inner">
-        <h1>Porta Gio</h1>
+<div class="container header-inner">
+<h1 class="logo">Porta Gio</h1>
 
-        <nav>
-            <a href="#home">Start</a>
-            <a href="#aktuell">Aktuelles</a>
-            <a href="#menu">Speisekarte</a>
-            <a href="#info">Info</a>
-            <a href="#contact">Kontakt</a>
-        </nav>
-    </div>
+<nav>
+<a href="#home">Start</a>
+<a href="#willkommen">Willkommen</a>
+<a href="#aktuell">Aktuelles</a>
+<a href="#menu">Speisekarte</a>
+<a href="#contact">Kontakt</a>
+</nav>
+
+</div>
 </header>
 
 <main id="home">
 
-    <!-- ===================================================
-         INTRO
-         Hero + Untertitel bilden EINEN gemeinsamen Bereich
-    ==================================================== -->
+<!-- INTRO -->
 
-    <section class="intro">
+<section class="intro">
 
-        <div class="intro-header">
+<div class="intro-top">
 
-            <img src="Biedenkopf_bunt.1a.png"
-                 class="intro-image left"
-                 alt="Biedenkopf links">
+<div class="intro-image left"></div>
 
-            <div class="intro-title">
+<div class="intro-center">
+<h2>Die kleine Auszeit</h2>
+</div>
 
-                <h2>Die kleine Auszeit</h2>
+<div class="intro-image right"></div>
 
-                <p class="intro-subtitle">
-                    Das Portal für die etwas andere Auszeit
-                    zwischendurch
-                </p>
+</div>
 
-            </div>
+<div class="intro-bottom">
+<p>Das Portal für die etwas andere Auszeit zwischendurch</p>
+</div>
 
-            <img src="Biedenkopf_bunt.1a.png"
-                 class="intro-image right"
-                 alt="Biedenkopf rechts">
+</section>
 
-        </div>
+<!-- WILLKOMMEN -->
 
-    </section>
+<section id="willkommen" class="container card">
 
-    <!-- ===================================================
-         WILLKOMMEN
-    ==================================================== -->
+<h2>Willkommen</h2>
 
-    <section class="container" id="info">
+<p>
+Treten Sie ein und vergessen Sie für eine kurze Zeit den Alltag.
+Entspannen Sie bei einer guten Tasse handgebrühten Kaffee und gönnen Sie sich
+eine süße oder herzhafte Kleinigkeit aus eigener Herstellung.
+</p>
 
-        <h2>Willkommen</h2>
+<p>
+<strong>Tipp:</strong> Mehrmals im Jahr machen wir eine Einkaufstour nach Bayern
+und Franken und bringen tolle Biere mit.
+Diese finden Sie unter <strong>Aktuelles</strong>.
+Es lohnt sich also, immer wieder einmal bei uns vorbeizuschauen.
+Und zögern sie nicht zu lange. Wenn weg – dann weg.
+</p>
 
-        <p>
-            Treten Sie ein und vergessen Sie für eine kurze Zeit
-            den Alltag. Entspannen Sie bei einer guten Tasse
-            handgebrühten Kaffee und gönnen Sie sich eine süße
-            oder herzhafte Kleinigkeit aus eigener Herstellung.
-        </p>
+</section>
 
-        <p>
-            <strong>Tipp:</strong><br>
+<!-- AKTUELLES -->
 
-            Mehrmals im Jahr machen wir eine Einkaufstour nach
-            Bayern und Franken und bringen tolle Biere von dort
-            mit. Es lohnt sich also, immer wieder einmal
-            vorbeizuschauen.
+<section id="aktuell" class="container card">
 
-            Die aktuellen Sorten finden Sie unter
-            <strong>Aktuelles</strong>.
+<h2>Aktuelle Aktionen</h2>
 
-            Und zögern Sie nicht zu lange –
-            wenn weg, dann weg.
-        </p>
+<object
+class="pdf-viewer"
+data="https://portagio-speisekarte.netlify.app/Porta_Gio_Bieraktionen.pdf"
+type="application/pdf">
 
-    </section>
+<p>
+Die PDF-Datei kann nicht angezeigt werden.
+<a href="https://portagio-speisekarte.netlify.app/Porta_Gio_Bieraktionen.pdf" target="_blank">
 
-    <!-- ===================================================
-         AKTUELLES
-    ==================================================== -->
+Hier öffnen
+</a>
+</p>
 
-    <section class="container" id="aktuell">
+</object>
 
-        <h2>Aktuelle Aktionen</h2>
+</section>
 
-        <object
-            data="Biedenkopf_mitMenue_Bieraktionen.col.wasserfarben.svg"
-            type="image/svg+xml"
-            width="100%"
-            height="500">
+<!-- SPEISEKARTE -->
 
-            <p>
-                Datei kann nicht angezeigt werden.
-                <a href="Biedenkopf_mitMenue_Bieraktionen.col.wasserfarben.svg"
-                   target="_blank">
-                    Hier öffnen
-                </a>
-            </p>
+<section id="menu" class="container card">
 
-        </object>
+<h2>Speisekarte</h2>
 
-    </section>
+<object
+class="pdf-viewer"
+data="https://portagio-speisekarte.netlify.app/Porta_Gio_Speys_und_Trank.pdf"
+type="application/pdf">
 
-    <!-- ===================================================
-         SPEISEKARTE
-    ==================================================== -->
+<p>
+Die PDF-Datei kann nicht angezeigt werden.
+<a href="https://portagio-speisekarte.netlify.app/Porta_Gio_Speys_und_Trank.pdf" target="_blank">
 
-    <section class="container" id="menu">
+Hier öffnen
+</a>
+</p>
 
-        <h2>Speisekarte</h2>
+</object>
 
-        <object
-            data="https://portagio-speisekarte.netlify.app/Porta_Gio_Speys_&_Trank.pdf"
-            type="application/pdf"
-            width="100%"
-            height="500">
+</section>
 
-            <p>
-                PDF kann nicht angezeigt werden.
-                <a href="https://portagio-speisekarte.netlify.app/Porta_Gio_Speys_&_Trank.pdf"
-                   target="_blank">
-                   Hier öffnen
-                </a>
-            </p>
+<!-- KONTAKT -->
 
-        </object>
+<section id="contact" class="container card">
 
-    </section>
+<h2>Kontakt</h2>
 
-    <!-- ===================================================
-         KONTAKT
-    ==================================================== -->
+<form id="contact-form"
+action="https://formspree.io/f/mzdloagg"
+method="POST">
 
-    <section class="container" id="contact">
+<div class="form-group">
+<label for="name">Name</label>
+<input id="name" name="name" type="text" required>
+</div>
 
-        <h2>Kontakt</h2>
+<div class="form-group">
+<label for="email">E-Mail</label>
+<input id="email" name="email" type="email" required>
+</div>
 
-        <form id="contact-form"
-              action="https://formspree.io/f/mzdloagg"
-              method="POST">
+<div class="form-group">
+<label for="message">Nachricht</label>
+<textarea id="message" name="message" required></textarea>
+</div>
 
-            <input
-                type="text"
-                name="name"
-                placeholder="Name"
-                required>
+<button type="submit">Nachricht senden</button>
 
-            <input
-                type="email"
-                name="email"
-                placeholder="E-Mail"
-                required>
+<p id="success" class="success-message">
+Vielen Dank. Ihre Nachricht wurde erfolgreich gesendet.
+</p>
 
-            <textarea
-                name="message"
-                placeholder="Nachricht"
-                required></textarea>
+<p id="error" class="error-message">
+Leider konnte die Nachricht nicht gesendet werden.
+</p>
 
-            <button type="submit">
-                Senden
-            </button>
+</form>
 
-        </form>
-
-        <p id="success"
-           style="display:none;color:green;">
-            Danke! Ihre Nachricht wurde erfolgreich gesendet.
-        </p>
-
-        <p id="error"
-           style="display:none;color:red;">
-            Leider konnte die Nachricht nicht gesendet werden.
-        </p>
-
-    </section>
+</section>
 
 </main>
 
-<!-- =======================================================
-     FOOTER
-======================================================== -->
-
 <footer>
 
-    <div class="container">
+<div class="container footer-content">
 
-        <h2>Impressum</h2>
+<div>
+<h3>Porta Gio Café Bistro</h3>
+<p>
+Galgenbergstraße 2<br>
+35216 Biedenkopf
+</p>
+</div>
 
-        <p>
-            Porta Gio Café Bistro<br>
-            Giovanna Willer<br>
-            Galgenbergstraße 2<br>
-            73054 Biedenkopf
-        </p>
+<div>
+<h3>Kontakt</h3>
+<p>
+Telefon: +49 89 123456<br>
+E-Mail:
+<a href="mailto:cafebistro@portagio.de">
+cafebistro@portagio.de
+</a>
+</p>
+</div>
 
-        <p>
-            Telefon: +49 89 123456<br>
-            E-Mail: cafebistro@portagio.de
-        </p>
+<div>
+<h3>Informationen</h3>
+<p>
+USt-IdNr.: DE123456789<br>
+Verantwortlich: Claus Willer
+</p>
+</div>
 
-        <p>
-            Umsatzsteuer-ID: DE123456789<br>
-            Verantwortlich für den Inhalt:
-            Claus Willer
-        </p>
+</div>
 
-        <p>
-            © 2026 Porta Gio
-        </p>
-
-    </div>
+<div class="footer-bottom">
+© 2026 Porta Gio Café Bistro
+</div>
 
 </footer>
 
 <script>
 
-const form = document.getElementById("contact-form");
-const success = document.getElementById("success");
-const error = document.getElementById("error");
+const form=document.getElementById("contact-form");
+const success=document.getElementById("success");
+const error=document.getElementById("error");
 
-form.addEventListener("submit", async (e) => {
+success.style.display="none";
+error.style.display="none";
 
-    e.preventDefault();
+form.addEventListener("submit",async(e)=>{
 
-    const response = await fetch(form.action, {
-        method: "POST",
-        body: new FormData(form),
-        headers: {
-            "Accept":"application/json"
-        }
-    });
+e.preventDefault();
 
-    if(response.ok){
+success.style.display="none";
+error.style.display="none";
 
-        success.style.display="block";
-        error.style.display="none";
+const response=await fetch(form.action,{
+method:"POST",
+body:new FormData(form),
+headers:{"Accept":"application/json"}
+});
 
-        form.reset();
-
-    }else{
-
-        success.style.display="none";
-        error.style.display="block";
-
-    }
+if(response.ok){
+success.style.display="block";
+form.reset();
+}else{
+error.style.display="block";
+}
 
 });
 
@@ -268,5 +231,3 @@ form.addEventListener("submit", async (e) => {
 
 </body>
 </html>
-```
-

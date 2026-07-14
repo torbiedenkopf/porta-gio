@@ -1,37 +1,504 @@
-.intro {
-    width: min(1100px, 90%);
-    margin: 40px auto;
-    padding: 25px;
+/* ==========================================================
+   PORTA GIO - style.css
+   Teil 1/2
+   Reset · Farben · Layout · Header · Intro · Cards
+   ========================================================== */
 
-    background: #a5a5a5;
-    border-radius: 20px;
+/* ---------- RESET ---------- */
+
+*{margin:0;padding:0;box-sizing:border-box;}
+
+html{scroll-behavior:smooth;}
+
+:root{
+
+--primary:#6d4425;
+--primary-dark:#55341c;
+--background:#f6f5f2;
+--card:#d9d9d9;
+--white:#fff;
+--text:#333;
+--text-light:#666;
+--radius:18px;
+--shadow:0 8px 20px rgba(0,0,0,.08);
+
 }
 
-.intro-header {
-    display: grid;
-    grid-template-columns: 90px 1fr 90px;
-    align-items: center;
-    gap: 15px;
+/* ---------- BODY ---------- */
+
+body{
+font-family:Arial,Helvetica,sans-serif;
+font-size:16px;
+line-height:1.6;
+background:var(--background);
+color:var(--text);
 }
 
-.intro-image {
-    width: 90px;
-    height: auto;
+img{
+display:block;
+max-width:100%;
+height:auto;
 }
 
-.intro-title {
-    text-align: center;
+a{
+text-decoration:none;
+color:inherit;
+transition:.25s;
 }
 
-.intro-title h2 {
-    margin: 0;
-    font-size: 2.8rem;
-    color: white;
+a:hover{
+color:var(--primary);
 }
 
-.intro-subtitle {
-    margin-top: 20px;
-    text-align: center;
-    font-size: 1.3rem;
-    color: white;
+h1{
+font-size:clamp(2rem,5vw,2.8rem);
+}
+
+h2{
+font-size:clamp(1.8rem,4vw,2.6rem);
+color:var(--primary);
+margin-bottom:1rem;
+}
+
+h3{
+font-size:clamp(1.2rem,3vw,1.5rem);
+margin-bottom:.8rem;
+}
+
+p{
+margin-bottom:1rem;
+}
+
+/* ---------- CONTAINER ---------- */
+
+.container{
+width:min(1100px,92%);
+margin:auto;
+}
+
+/* ---------- HEADER ---------- */
+
+header{
+position:sticky;
+top:0;
+z-index:1000;
+background:var(--white);
+box-shadow:0 2px 10px rgba(0,0,0,.08);
+}
+
+.header-inner{
+display:flex;
+justify-content:space-between;
+align-items:center;
+min-height:80px;
+gap:2rem;
+}
+
+.logo{
+color:var(--primary);
+}
+
+/* ---------- NAVIGATION ---------- */
+
+nav{
+display:flex;
+flex-wrap:wrap;
+gap:1.5rem;
+}
+
+nav a{
+font-weight:600;
+position:relative;
+padding:.25rem 0;
+}
+
+nav a::after{
+content:"";
+position:absolute;
+left:0;
+bottom:-4px;
+width:0;
+height:2px;
+background:var(--primary);
+transition:.3s;
+}
+
+nav a:hover::after{
+width:100%;
+}
+
+/* ---------- INTRO ---------- */
+
+.intro{
+
+width:min(1100px,92%);
+margin:2rem auto;
+
+padding:clamp(1.3rem,3vw,2.5rem);
+
+background:var(--card);
+
+border-radius:var(--radius);
+
+box-shadow:var(--shadow);
+
+}
+
+.intro-top{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+gap:1rem;
+
+}
+
+.intro-image{
+
+flex:0 0 auto;
+
+width:clamp(60px,12vw,110px);
+
+aspect-ratio:1;
+
+background-repeat:no-repeat;
+
+background-position:center;
+
+background-size:contain;
+
+}
+
+.left{
+
+background-image:url("Biedenkopf_bunt.1a.png");
+
+}
+
+.right{
+
+background-image:url("Biedenkopf_bunt.1a.png");
+
+}
+
+.intro-center{
+
+flex:1;
+
+text-align:center;
+
+}
+
+.intro-center h2{
+
+margin:0;
+
+font-size:clamp(1.8rem,5vw,3.2rem);
+
+line-height:1.2;
+
+}
+
+.intro-bottom{
+
+margin-top:1.4rem;
+
+text-align:center;
+
+}
+
+.intro-bottom p{
+
+margin:0;
+
+font-size:clamp(1rem,2vw,1.3rem);
+
+color:var(--text-light);
+
+}
+
+/* ---------- KARTEN ---------- */
+
+.card{
+
+background:var(--white);
+
+margin:2rem auto;
+
+padding:clamp(1.5rem,3vw,2.5rem);
+
+border-radius:var(--radius);
+
+box-shadow:var(--shadow);
+
+}
+
+.card h2{
+
+text-align:center;
+
+}
+
+.card p{
+
+max-width:72ch;
+
+margin-left:auto;
+
+margin-right:auto;
+
+}
+
+section{
+
+scroll-margin-top:90px;
+
+}
+/* ==========================================================
+   PORTA GIO - style.css
+   Teil 2/2
+   PDF · SVG · Formular · Footer · Responsive
+   ========================================================== */
+
+/* ---------- PDF / SVG ---------- */
+
+.pdf-viewer,
+.svg-viewer{
+width:100%;
+border:none;
+border-radius:12px;
+background:#fff;
+overflow:hidden;
+}
+
+.pdf-viewer{
+height:clamp(450px,70vh,900px);
+}
+
+.svg-viewer{
+height:clamp(350px,60vh,700px);
+}
+
+/* ---------- FORMULAR ---------- */
+
+form{
+display:flex;
+flex-direction:column;
+gap:1.2rem;
+margin-top:1.5rem;
+}
+
+.form-group{
+display:flex;
+flex-direction:column;
+}
+
+label{
+margin-bottom:.4rem;
+font-weight:600;
+color:var(--primary);
+}
+
+input,
+textarea{
+width:100%;
+padding:.9rem 1rem;
+font:inherit;
+border:1px solid #ccc;
+border-radius:10px;
+background:#fff;
+transition:.25s;
+}
+
+input:focus,
+textarea:focus{
+outline:none;
+border-color:var(--primary);
+box-shadow:0 0 0 3px rgba(109,68,37,.15);
+}
+
+textarea{
+resize:vertical;
+min-height:180px;
+}
+
+button{
+align-self:flex-start;
+padding:.9rem 2rem;
+border:none;
+border-radius:10px;
+background:var(--primary);
+color:#fff;
+font-size:1rem;
+cursor:pointer;
+transition:.25s;
+}
+
+button:hover{
+background:var(--primary-dark);
+}
+
+.success-message{
+display:none;
+margin-top:1rem;
+color:#16803c;
+font-weight:600;
+}
+
+.error-message{
+display:none;
+margin-top:1rem;
+color:#b80020;
+font-weight:600;
+}
+
+/* ---------- FOOTER ---------- */
+
+footer{
+margin-top:3rem;
+background:#333;
+color:#fff;
+}
+
+.footer-content{
+display:flex;
+justify-content:space-between;
+gap:2rem;
+padding:3rem 0;
+flex-wrap:wrap;
+}
+
+.footer-content>div{
+flex:1;
+min-width:220px;
+}
+
+.footer-content h3{
+color:#fff;
+}
+
+.footer-content p,
+.footer-content a{
+color:#ddd;
+}
+
+.footer-content a:hover{
+color:#fff;
+}
+
+.footer-bottom{
+text-align:center;
+padding:1rem;
+background:#262626;
+font-size:.9rem;
+}
+
+/* ---------- TABLET ---------- */
+
+@media (max-width:900px){
+
+.header-inner{
+flex-direction:column;
+justify-content:center;
+padding:1rem 0;
+}
+
+nav{
+justify-content:center;
+gap:1rem;
+}
+
+.footer-content{
+gap:2rem;
+}
+
+}
+
+/* ---------- SMARTPHONE ---------- */
+
+@media (max-width:700px){
+
+body{
+font-size:15px;
+}
+
+.container,
+.intro{
+width:95%;
+}
+
+nav{
+justify-content:center;
+gap:.8rem;
+font-size:.95rem;
+}
+
+.intro{
+padding:1.2rem;
+}
+
+.intro-top{
+gap:.8rem;
+}
+
+.intro-image{
+width:clamp(50px,18vw,75px);
+}
+
+.intro-center h2{
+font-size:clamp(1.5rem,7vw,2.2rem);
+}
+
+.intro-bottom p{
+font-size:1rem;
+}
+
+.card{
+padding:1.3rem;
+}
+
+button{
+width:100%;
+align-self:stretch;
+}
+
+.footer-content{
+flex-direction:column;
+text-align:center;
+gap:2rem;
+}
+
+}
+
+/* ---------- KLEINE SMARTPHONES ---------- */
+
+@media (max-width:380px){
+
+nav{
+font-size:.82rem;
+gap:.5rem;
+}
+
+.logo{
+font-size:1.7rem;
+}
+
+.intro-image{
+width:48px;
+}
+
+}
+
+/* ---------- GROSSE MONITORE ---------- */
+
+@media (min-width:1600px){
+
+.container,
+.intro{
+max-width:1300px;
+}
+
 }
