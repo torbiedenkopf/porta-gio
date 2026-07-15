@@ -103,7 +103,7 @@ color:var(--primary);
 
 nav{
 display:flex;
-flex-wrap:nowrap;
+flex-wrap:wrap;
 gap:1.5rem;
 }
 
@@ -255,7 +255,7 @@ margin-right:auto;
 
 section{
 
-scroll-margin-top:130px;
+scroll-margin-top:150px;
 
 }
 /* ==========================================================
@@ -400,6 +400,7 @@ font-size:.9rem;
 /* ---------- TABLET ---------- */
 
 @media (max-width:900px){
+section{scroll-margin-top:180px;}
 
 .header-inner{
 flex-direction:column;
@@ -421,6 +422,7 @@ gap:2rem;
 /* ---------- SMARTPHONE ---------- */
 
 @media (max-width:700px){
+section{scroll-margin-top:210px;}
 
 .header-inner{
 flex-direction:column;
