@@ -381,13 +381,17 @@ min-width:220px;
 color:#fff;
 }
 
-.footer-content p,
-.footer-content a{
+.footer-content p{
 color:#ddd;
 }
 
+.footer-content a{
+color:#0066cc;
+text-decoration:underline;
+}
+
 .footer-content a:hover{
-color:#fff;
+color:#004999;
 }
 
 .footer-bottom{
