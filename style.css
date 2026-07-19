@@ -1,7 +1,5 @@
 /* ==========================================================
    PORTA GIO - style.css
-   Teil 1/2
-   Reset · Farben · Layout · Header · Intro · Cards
    ========================================================== */
 
 /* ---------- RESET ---------- */
@@ -258,11 +256,6 @@ section{
 scroll-margin-top:150px;
 
 }
-/* ==========================================================
-   PORTA GIO - style.css
-   Teil 2/2
-   PDF · SVG · Formular · Footer · Responsive
-   ========================================================== */
 
 /* ---------- PDF / SVG ---------- */
 
@@ -399,6 +392,23 @@ text-align:center;
 padding:1rem;
 background:#262626;
 font-size:.9rem;
+}
+
+/* ---------- LINKS ---------- */
+
+/* Link normal */
+.link-blue {
+  color: #0066cc;
+  text-decoration: underline;
+  font-weight: bold;
+  transition: color 0.2s ease, text-decoration 0.2s ease;
+}
+
+/* Hover-Effekt */
+.link-blue:hover {
+  color: #004c99;        /* dunkleres Blau */
+  text-decoration: none; /* Unterstreichung weg */
+  cursor: pointer;       /* Handcursor */
 }
 
 /* ---------- TABLET ---------- */
