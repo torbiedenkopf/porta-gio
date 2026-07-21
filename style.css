@@ -534,42 +534,34 @@ max-width:1300px;
 
 /* --- PDF DARSTELLEN --- */
 
-/* Default: falls keine Media-Query greift */
 .pdf-frame {
   width: 100%;
   border: none;
   margin: 0;
   padding: 0;
-  height: 900px; /* Basiswert */
 }
 
-/* Smartphone Hochformat (sehr klein) */
-@media (max-width: 480px) {
+/* Smartphone */
+@media (max-width: 767px) {
   .pdf-frame {
     height: 700px;
   }
 }
 
-/* Smartphone Querformat / kleine Tablets */
-@media (min-width: 481px) and (max-width: 767px) {
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1024px) {
   .pdf-frame {
     height: 900px;
   }
 }
 
-/* Tablet / kleines Notebook */
-@media (min-width: 768px) and (max-width: 1024px) {
+/* Notebook / Desktop */
+@media (min-width: 1025px) {
   .pdf-frame {
-    height: 1100px;
+    height: 1000px; /* kleiner als vorher */
   }
 }
 
-/* Notebook / Desktop: DIN A4 */
-@media (min-width: 1025px) {
-  .pdf-frame {
-    height: 1123px;
-  }
-}
 
 
 
