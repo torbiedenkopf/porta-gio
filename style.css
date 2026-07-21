@@ -534,6 +534,7 @@ max-width:1300px;
 
 /* --- PDF DARSTELLEN --- */
 
+/* Default: falls keine Media-Query greift */
 .pdf-frame {
   width: 100%;
   border: none;
@@ -542,11 +543,33 @@ max-width:1300px;
   height: 900px; /* Basiswert */
 }
 
-/* Tablet / Notebook / Desktop */
-@media (min-width: 768px) {
+/* Smartphone Hochformat (sehr klein) */
+@media (max-width: 480px) {
   .pdf-frame {
-    height: 1123px; /* ungefähr DIN A4 */
+    height: 700px;
   }
 }
+
+/* Smartphone Querformat / kleine Tablets */
+@media (min-width: 481px) and (max-width: 767px) {
+  .pdf-frame {
+    height: 900px;
+  }
+}
+
+/* Tablet / kleines Notebook */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .pdf-frame {
+    height: 1100px;
+  }
+}
+
+/* Notebook / Desktop: DIN A4 */
+@media (min-width: 1025px) {
+  .pdf-frame {
+    height: 1123px;
+  }
+}
+
 
 
