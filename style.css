@@ -539,34 +539,14 @@ max-width:1300px;
   border: none;
   margin: 0;
   padding: 0;
-  display: block;
+  height: 900px; /* Basiswert */
 }
 
-/* Smartphone Hochformat */
-@media (max-width: 480px) {
+/* Tablet / Notebook / Desktop */
+@media (min-width: 768px) {
   .pdf-frame {
-    height: 900px;
+    height: 1123px; /* ungefähr DIN A4 */
   }
 }
 
-/* Smartphone Querformat / kleine Tablets */
-@media (min-width: 481px) and (max-width: 767px) {
-  .pdf-frame {
-    height: 1100px;
-  }
-}
-
-/* Tablet / kleines Notebook */
-@media (min-width: 768px) and (max-width: 1024px) {
-  .pdf-frame {
-    height: 1300px;
-  }
-}
-
-/* Notebook / Desktop */
-@media (min-width: 1025px) {
-  .pdf-frame {
-    height: 1500px;
-  }
-}
 
