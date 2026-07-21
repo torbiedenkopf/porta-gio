@@ -531,3 +531,40 @@ max-width:1300px;
 }
 
 }
+
+/* --- PDF DARSTELLEN --- */
+.pdf-frame {
+  width: 100%;
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Smartphone Hochformat */
+@media (max-width: 480px) {
+  .pdf-frame {
+    height: 700px;
+  }
+}
+
+/* Smartphone Querformat / kleine Tablets */
+@media (max-width: 767px) {
+  .pdf-frame {
+    height: 900px;
+  }
+}
+
+/* Tablet / kleines Notebook */
+@media (max-width: 1024px) {
+  .pdf-frame {
+    height: 1100px;
+  }
+}
+
+/* Notebook / Desktop: DIN A4 Höhe */
+@media (min-width: 1025px) {
+  .pdf-frame {
+    height: 1123px; /* DIN A4 */
+  }
+}
+
