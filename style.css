@@ -535,12 +535,9 @@ max-width:1300px;
 /* --- PDF DARSTELLEN --- */
 
 .pdf-frame{
-
-    width:100%;
-    border:none;
-    display:block;
-    background:white;
-
-    aspect-ratio:210/297;
-
+    display: block;
+    width: 100%;
+    height: 100px;   /* Startwert, wird später per JavaScript ersetzt */
+    border: none;
+    background: #ffffff;
 }
