@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>PDF.js Embedded</title>
 
 <style>
 
@@ -16,12 +19,32 @@ body{
 }
 
 #viewer{
+
     width:100%;
+    box-sizing:border-box;
+
 }
 
-canvas{
+.pdf-page{
+
     display:block;
-    margin:0 auto;
+    margin:0 auto 16px auto;
+    background:white;
+
+}
+
+#error{
+
+    display:none;
+
+    padding:20px;
+
+    color:#b00020;
+
+    font-family:Arial,sans-serif;
+
+    font-size:16px;
+
 }
 
 </style>
@@ -32,55 +55,10 @@ canvas{
 
 <div id="viewer"></div>
 
-<script type="module">
+<div id="error"></div>
 
-import * as pdfjsLib from "../build/pdf.mjs";
-
-pdfjsLib.GlobalWorkerOptions.workerSrc="../build/pdf.worker.mjs";
-
-const params=new URLSearchParams(location.search);
-
-const file=params.get("file");
-
-const pdf=await pdfjsLib.getDocument(file).promise;
-
-const page=await pdf.getPage(1);
-
-const viewport=page.getViewport({scale:1});
-
-const viewer=document.getElementById("viewer");
-
-const canvas=document.createElement("canvas");
-
-const context=canvas.getContext("2d");
-
-viewer.appendChild(canvas);
-
-function render(){
-
-    const width=window.innerWidth;
-
-    const scale=width/viewport.width;
-
-    const vp=page.getViewport({scale});
-
-    canvas.width=vp.width;
-    canvas.height=vp.height;
-
-    page.render({
-        canvasContext:context,
-        viewport:vp
-    });
-
-    document.body.style.height=vp.height+"px";
-
-}
-
-render();
-
-window.addEventListener("resize",render);
-
-</script>
+<script type="module" src="./embedded.js"></script>
 
 </body>
+
 </html>
