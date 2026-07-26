@@ -18,7 +18,7 @@ if (!file) {
 
 }
 
-let pdfDocument = null;
+let pdfDocument;
 
 const DPR = window.devicePixelRatio || 1;
 
@@ -47,6 +47,7 @@ async function loadPdf() {
         await pdfjsLib.getDocument({
             url: file
         }).promise;
+
     await renderDocument();
 
     }
@@ -62,6 +63,7 @@ async function loadPdf() {
     }
 
 }
+
 async function renderDocument() {
 
     if (renderRunning) {
@@ -73,12 +75,12 @@ async function renderDocument() {
 
     renderRunning = true;
     renderRequested = false;
+	
+	clearViewer();
 
-    clearViewer();
-
-    const availableWidth =
-        viewer.clientWidth || window.innerWidth;
-
+	const availableWidth =
+		document.documentElement.clientWidth;
+		
     let totalHeight = 0;
 
     for (let pageNumber = 1;
@@ -151,13 +153,15 @@ async function renderDocument() {
 
     requestAnimationFrame(() => {
 
-        window.parent.postMessage({
+		window.parent.postMessage({
 
-            type: "pdf-height",
+			type: "pdf-height",
 
-            height: Math.ceil(totalHeight)
+			id: frameId,
 
-        }, "*");
+			height: Math.ceil(totalHeight)
+
+    }, "*");
 
     });
 
@@ -194,10 +198,12 @@ window.addEventListener(
     scheduleRender
 );
 
-window.addEventListener(
-    "pageshow",
-    scheduleRender
-);
+window.addEventListener("pageshow", () => {
+
+    lastWidth = 0;
+    scheduleRender();
+
+});
 
 loadPdf();
 
