@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+
+html,
+body{
+    margin:0;
+    padding:0;
+    background:#ffffff;
+    overflow:hidden;
+}
+
+#viewer{
+    width:100%;
+}
+
+canvas{
+    display:block;
+    margin:0 auto;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div id="viewer"></div>
+
+<script type="module">
+
+import * as pdfjsLib from "../build/pdf.mjs";
+
+pdfjsLib.GlobalWorkerOptions.workerSrc="../build/pdf.worker.mjs";
+
+const params=new URLSearchParams(location.search);
+
+const file=params.get("file");
+
+const pdf=await pdfjsLib.getDocument(file).promise;
+
+const page=await pdf.getPage(1);
+
+const viewport=page.getViewport({scale:1});
+
+const viewer=document.getElementById("viewer");
+
+const canvas=document.createElement("canvas");
+
+const context=canvas.getContext("2d");
+
+viewer.appendChild(canvas);
+
+function render(){
+
+    const width=window.innerWidth;
+
+    const scale=width/viewport.width;
+
+    const vp=page.getViewport({scale});
+
+    canvas.width=vp.width;
+    canvas.height=vp.height;
+
+    page.render({
+        canvasContext:context,
+        viewport:vp
+    });
+
+    document.body.style.height=vp.height+"px";
+
+}
+
+render();
+
+window.addEventListener("resize",render);
+
+</script>
+
+</body>
+</html>
