@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="de">
 
-<!-- documents on netlify: > https://portagio.de/pdfjs/web/embedded.html?file=https://portal.portagio.de/example.pdf -->
-<!-- documents on github:  > https://portagio.de/pdfjs/web/embedded.html?file=/portagio-speisekarte/example.pdf -->
+<!-- documents on netlify: > https://portagio.de/pdfjs/embedded.html?file=https://portal.portagio.de/example.pdf -->
+<!-- documents on github:  > https://portagio.de/pdfjs/embedded.html?file=/portagio-speisekarte/example.pdf -->
 
 <head>
 <meta charset="UTF-8">
@@ -10,6 +10,27 @@
 <title>Porta Gio Café Bistro Biedenkopf</title>
 <link rel="stylesheet" href="style.css">
 </head>
+
+<script>
+
+window.addEventListener("message", (event) => {
+
+    if (event.data.type !== "pdf-height")
+        return;
+
+    const frame = document.querySelector(
+        'iframe[src*="embedded.html"]'
+    );
+
+    if (!frame)
+        return;
+
+    frame.style.height =
+        event.data.height + "px";
+
+});
+
+</script>
 
 <body>
 
@@ -84,7 +105,8 @@ Und zögern sie nicht zu lange. Wenn weg – dann weg.
 
 <iframe
   class="pdf-frame"
-  src="https://portagio.de/pdfjs/web/embedded.html?file=/portagio-speisekarte/Porta_Gio_Bieraktionen.pdf">
+  id="pdf-bier"
+  src="/pdfjs/embedded.html?file=/portagio-speisekarte/Porta_Gio_Bieraktionen.pdf">
 </iframe>
 
 </section>
@@ -96,8 +118,9 @@ Und zögern sie nicht zu lange. Wenn weg – dann weg.
 <h2>Speisekarte</h2>
 
 <iframe
+  id="pdf-speisekarte"
   class="pdf-frame"
-  src="https://portagio.de/pdfjs/web/embedded.html?file=/portagio-speisekarte/Porta_Gio_Speys_und_Trank.pdf">
+  src="/pdfjs/embedded.html?file=/portagio-speisekarte/Porta_Gio_Speys_und_Trank.pdf">
 </iframe>
 
 
@@ -110,8 +133,9 @@ Und zögern sie nicht zu lange. Wenn weg – dann weg.
 <h2>Öffnungszeiten</h2>
 
 <iframe
+  id="pdf-oeffnungszeiten"
   class="pdf-frame"
-  src="https://portagio.de/pdfjs/web/embedded.html?file=/portagio-speisekarte/Porta_Gio_Oeffnungszeiten.pdf">
+  src="/pdfjs/embedded.html?file=/portagio-speisekarte/Porta_Gio_Oeffnungszeiten.pdf">
 </iframe>
 
 </section>
