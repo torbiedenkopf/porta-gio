@@ -18,6 +18,8 @@ if (!file) {
 
 }
 
+let lastWidth = 0;
+
 let pdfDocument;
 
 const DPR = window.devicePixelRatio || 1;
