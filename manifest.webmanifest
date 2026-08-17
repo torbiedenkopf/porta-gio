@@ -2,19 +2,22 @@
   "name": "Porta Gio Café Bistro",
   "short_name": "Porta Gio",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#8B0000",
   "icons": [
     {
-      "src": "Porta_Gio_Icon_192.png",
+      "src": "/Porta_Gio_Icon_192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
-      "src": "Porta_Gio_Icon_512.png",
+      "src": "/Porta_Gio_Icon_512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ]
 }
