@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="de">
 
-<!-- documents on netlify: > https://portagio.de/pdfjs/embedded.html?file=https://portal.portagio.de/example.pdf (small letters only!) -->
+<!-- documents on netlify: > https://portagio.de/pdfjs/embedded.html?file=https://portal.portagio.de/example.pdf -->
 <!-- documents on github:  > https://portagio.de/pdfjs/embedded.html?file=/docs-portagio/example.pdf -->
 
 <head>
@@ -278,8 +278,9 @@ cafebistro@portagio.de
 <script>
 (async function () {
 
-    <!-- const BASIS_URL = "https://portal.portagio.de/"; -->
-	const BASIS_URL = "/docs-portagio/";
+    const BASIS_URL = "https://portal.portagio.de/";
+	<!-- for testing of absolute path name -->
+	<!-- const BASIS_URL = "/docs-portagio/"; -->
     const JSON_DATEI = "aktionen.json";
     const AKTIONEN_PDF = "Porta_Gio_Aktionen.pdf";
     const FALLBACK_PDF = "Porta_Gio_keine_Aktionen.pdf";
@@ -352,7 +353,6 @@ cafebistro@portagio.de
             BASIS_URL + JSON_DATEI + "?v=" + Date.now(),
             { cache: "no-store" }
         );
-		<!-- console.log("Dateiname:", response); -->
 
         if (response.ok)
             konfiguration = await response.json();
