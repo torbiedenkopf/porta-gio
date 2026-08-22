@@ -119,12 +119,7 @@ window.addEventListener("message", (event) => {
 
 <h2>Aktionen</h2>
 
-<iframe
-  class="pdf-frame"
-  id="pdf-bier"
-  src="/pdfjs/embedded.html?id=pdf-bier&file=https://portal.portagio.de/Porta_Gio_keine_Aktionen.pdf"
-  title="Aktionen Café Bistro Porta Gio">
-</iframe>
+<div id="aktionen-inhalt"></div>
 
 </section>
 
@@ -278,6 +273,171 @@ cafebistro@portagio.de
 </div>
 
 </footer>
+
+
+<script>
+(async function () {
+
+    <!-- const BASIS_URL = "https://portal.portagio.de/"; -->
+	const BASIS_URL = "/docs-portagio/";
+    const JSON_DATEI = "aktionen.json";
+    const AKTIONEN_PDF = "Porta_Gio_Aktionen.pdf";
+    const FALLBACK_PDF = "Porta_Gio_keine_Aktionen.pdf";
+
+    const container = document.getElementById("aktionen-inhalt");
+
+    if (!container)
+        return;
+
+    async function existiert(url) {
+
+        try {
+
+            const response = await fetch(url, {
+                method: "HEAD",
+                cache: "no-store"
+            });
+
+            return response.ok;
+
+        } catch (err) {
+
+            console.warn("Datei konnte nicht geprüft werden:", url, err);
+            return false;
+
+        }
+
+    }
+
+    function pdfAnzeigen(dateiUrl, id, titel) {
+
+        const iframe = document.createElement("iframe");
+
+        iframe.className = "pdf-frame";
+        iframe.id = id;
+        iframe.title = titel;
+
+        iframe.src =
+            "/pdfjs/embedded.html?id=" +
+            encodeURIComponent(id) +
+            "&file=" +
+            encodeURIComponent(dateiUrl);
+
+        container.appendChild(iframe);
+
+    }
+
+    function bildAnzeigen(dateiUrl, altText) {
+
+        const img = document.createElement("img");
+
+        img.src = dateiUrl;
+        img.alt = altText;
+        img.loading = "lazy";
+
+        img.style.display = "block";
+        img.style.width = "100%";
+        img.style.height = "auto";
+        img.style.margin = "0 auto 16px auto";
+
+        container.appendChild(img);
+
+    }
+
+    let konfiguration = null;
+
+    try {
+
+        const response = await fetch(
+            BASIS_URL + JSON_DATEI + "?v=" + Date.now(),
+            { cache: "no-store" }
+        );
+		<!-- console.log("Dateiname:", response); -->
+
+        if (response.ok)
+            konfiguration = await response.json();
+
+    } catch (err) {
+
+        console.warn("aktionen.json konnte nicht geladen werden.", err);
+
+    }
+
+    const gefundeneBilder = [];
+
+    if (
+        konfiguration &&
+        Array.isArray(konfiguration.praefixe) &&
+        Number.isInteger(konfiguration.maxBilder) &&
+        konfiguration.maxBilder > 0
+    ) {
+
+        const pruefungen = [];
+
+        for (const praefix of konfiguration.praefixe) {
+
+            for (let nummer = 1; nummer <= konfiguration.maxBilder; nummer++) {
+
+                const dateiname = praefix + nummer + ".jpg";
+                const url = BASIS_URL + dateiname;
+
+                pruefungen.push(
+                    existiert(url).then(vorhanden => ({
+                        vorhanden,
+                        url,
+                        dateiname
+                    }))
+                );
+
+            }
+
+        }
+
+        const ergebnisse = await Promise.all(pruefungen);
+
+        for (const ergebnis of ergebnisse) {
+
+            if (ergebnis.vorhanden)
+                gefundeneBilder.push(ergebnis);
+
+        }
+
+    }
+
+    const aktionsPdfUrl = BASIS_URL + AKTIONEN_PDF;
+    const aktionsPdfVorhanden = await existiert(aktionsPdfUrl);
+
+    if (aktionsPdfVorhanden) {
+
+        pdfAnzeigen(
+            aktionsPdfUrl,
+            "pdf-aktionen",
+            "Aktionen Café Bistro Porta Gio"
+        );
+
+    }
+
+    for (const bild of gefundeneBilder) {
+
+        bildAnzeigen(
+            bild.url,
+            "Aktionsangebot Café Bistro Porta Gio"
+        );
+
+    }
+
+    if (!aktionsPdfVorhanden && gefundeneBilder.length === 0) {
+
+        pdfAnzeigen(
+            BASIS_URL + FALLBACK_PDF,
+            "pdf-keine-aktionen",
+            "Derzeit keine aktuellen Aktionen"
+        );
+
+    }
+
+})();
+</script>
 
 <script>
 
