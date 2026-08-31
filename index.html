@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="de">
 
-<!-- documents on netlify: > https://portagio.de/pdfjs/embedded.html?file=https://portal.portagio.de/example.pdf -->
-<!-- documents on github:  > https://portagio.de/pdfjs/embedded.html?file=/docs-portagio/example.pdf -->
+<!-- Dokumente werden aus portal.portagio.de/docs-portagio/<ordner>/dateien.json geladen. -->
 
 <head>
 <meta charset="UTF-8">
@@ -116,42 +115,22 @@ window.addEventListener("message", (event) => {
 <!-- AKTUELLES -->
 
 <section id="aktuell" class="container card">
-
 <h2>Aktionen</h2>
-
 <div id="aktionen-inhalt"></div>
-
 </section>
 
 <!-- SPEISEKARTE -->
 
 <section id="menu" class="container card">
-
 <h2>Speisekarte</h2>
-
-<iframe
-  id="pdf-speisekarte"
-  class="pdf-frame"
-  src="/pdfjs/embedded.html?id=pdf-speisekarte&file=https://portal.portagio.de/Porta_Gio_Speys_und_Trank.pdf"
-  title="Speisekarte Café Bistro Porta Gio">
-</iframe>
-
-
+<div id="speisekarte-inhalt"></div>
 </section>
 
 <!-- OEFFNUNGSZEITEN -->
 
 <section id="oeffnungszeiten" class="container card">
-
 <h2>Öffnungszeiten</h2>
-
-<iframe
-  id="pdf-oeffnungszeiten"
-  class="pdf-frame"
-  src="/pdfjs/embedded.html?id=pdf-oeffnungszeiten&file=https://portal.portagio.de/Porta_Gio_Oeffnungszeiten.pdf"
-  title="Öffnungszeiten Café Bistro Porta Gio">
-</iframe>
-
+<div id="oeffnungszeiten-inhalt"></div>
 </section>
 
 <!-- KONTAKT -->
@@ -251,7 +230,7 @@ Galgenbergstraße 2<br>
 <div>
 <h3>Kontakt</h3>
 <p>
-Telefon: +49 6461 9898999<<br>
+Telefon: +49 6461 9898999<br>
 E-Mail:
 <a href="mailto:cafebistro@portagio.de">
 cafebistro@portagio.de
@@ -278,163 +257,176 @@ cafebistro@portagio.de
 <script>
 (async function () {
 
-    const BASIS_URL = "https://portal.portagio.de/";
-	<!-- for testing of absolute path name -->
-	<!-- const BASIS_URL = "/docs-portagio/"; -->
-    const JSON_DATEI = "aktionen.json";
-    const AKTIONEN_PDF = "Porta_Gio_Aktionen.pdf";
-    const FALLBACK_PDF = "Porta_Gio_keine_Aktionen.pdf";
+    /*
+     * WEBVERSION
+     *
+     * index.html und PDF.js liegen auf der Hauptwebsite.
+     * Dokumente und dateien.json liegen auf Netlify:
+     *
+     *   https://portal.portagio.de/specials/
+     *   https://portal.portagio.de/menu/
+     *   https://portal.portagio.de/business_hours/
+     */
 
-    const container = document.getElementById("aktionen-inhalt");
+    const DOKUMENT_BASIS = new URL("https://portal.portagio.de/");
+    const PDF_VIEWER = new URL("pdfjs/embedded.html", window.location.href);
 
-    if (!container)
-        return;
-
-    async function existiert(url) {
-
-        try {
-
-            const response = await fetch(url, {
-                method: "HEAD",
-                cache: "no-store"
-            });
-
-            return response.ok;
-
-        } catch (err) {
-
-            console.warn("Datei konnte nicht geprüft werden:", url, err);
-            return false;
-
+    const bereiche = [
+        {
+            ordner: "specials/",
+            containerId: "aktionen-inhalt",
+            idPrefix: "aktion",
+            titel: "Aktionen Café Bistro Porta Gio",
+            mehrere: true
+        },
+        {
+            ordner: "menu/",
+            containerId: "speisekarte-inhalt",
+            idPrefix: "speisekarte",
+            titel: "Speisekarte Café Bistro Porta Gio",
+            mehrere: false
+        },
+        {
+            ordner: "business_hours/",
+            containerId: "oeffnungszeiten-inhalt",
+            idPrefix: "oeffnungszeiten",
+            titel: "Öffnungszeiten Café Bistro Porta Gio",
+            mehrere: false
         }
+    ];
 
+    function dateiUrl(ordner, dateiname) {
+        return new URL(
+            ordner + dateiname.split("/").map(encodeURIComponent).join("/"),
+            DOKUMENT_BASIS
+        );
     }
 
-    function pdfAnzeigen(dateiUrl, id, titel) {
-
+    function pdfAnzeigen(container, url, id, titel) {
         const iframe = document.createElement("iframe");
-
         iframe.className = "pdf-frame";
         iframe.id = id;
         iframe.title = titel;
 
-        iframe.src =
-            "/pdfjs/embedded.html?id=" +
-            encodeURIComponent(id) +
-            "&file=" +
-            encodeURIComponent(dateiUrl);
+        const viewerUrl = new URL(PDF_VIEWER.href);
+        viewerUrl.searchParams.set("id", id);
+        viewerUrl.searchParams.set("file", url.href);
 
+        iframe.src = viewerUrl.href;
         container.appendChild(iframe);
-
     }
 
-    function bildAnzeigen(dateiUrl, altText) {
-
+    function bildAnzeigen(container, url, altText) {
         const img = document.createElement("img");
-
-        img.src = dateiUrl;
+        img.src = url.href;
         img.alt = altText;
         img.loading = "lazy";
-
         img.style.display = "block";
         img.style.width = "100%";
         img.style.height = "auto";
         img.style.margin = "0 auto 16px auto";
-
         container.appendChild(img);
-
     }
 
-    let konfiguration = null;
+    function meldung(container, text) {
+        const p = document.createElement("p");
+        p.textContent = text;
+        p.style.padding = "12px";
+        p.style.border = "1px solid currentColor";
+        container.appendChild(p);
+    }
 
-    try {
+    async function bereichLaden(config) {
+        const container = document.getElementById(config.containerId);
+        if (!container) return;
 
-        const response = await fetch(
-            BASIS_URL + JSON_DATEI + "?v=" + Date.now(),
-            { cache: "no-store" }
+        const jsonUrl = new URL(
+            config.ordner + "dateien.json?v=" + Date.now(),
+            DOKUMENT_BASIS
         );
 
-        if (response.ok)
-            konfiguration = await response.json();
+        let konfiguration;
 
-    } catch (err) {
+        try {
+            const response = await fetch(jsonUrl.href, { cache: "no-store" });
 
-        console.warn("aktionen.json konnte nicht geladen werden.", err);
-
-    }
-
-    const gefundeneBilder = [];
-
-    if (
-        konfiguration &&
-        Array.isArray(konfiguration.praefixe) &&
-        Number.isInteger(konfiguration.maxBilder) &&
-        konfiguration.maxBilder > 0
-    ) {
-
-        const pruefungen = [];
-
-        for (const praefix of konfiguration.praefixe) {
-
-            for (let nummer = 1; nummer <= konfiguration.maxBilder; nummer++) {
-
-                const dateiname = praefix + nummer + ".jpg";
-                const url = BASIS_URL + dateiname;
-
-                pruefungen.push(
-                    existiert(url).then(vorhanden => ({
-                        vorhanden,
-                        url,
-                        dateiname
-                    }))
+            if (!response.ok) {
+                throw new Error(
+                    "HTTP " + response.status + " beim Laden von " + jsonUrl.href
                 );
-
             }
 
+            konfiguration = await response.json();
+
+        } catch (err) {
+            console.error(err);
+            meldung(
+                container,
+                "Dateiliste konnte nicht geladen werden: " + jsonUrl.pathname
+            );
+            return;
         }
 
-        const ergebnisse = await Promise.all(pruefungen);
+        const dateien =
+            konfiguration && Array.isArray(konfiguration.dateien)
+                ? konfiguration.dateien
+                : [];
 
-        for (const ergebnis of ergebnisse) {
+        let anzahlAngezeigt = 0;
 
-            if (ergebnis.vorhanden)
-                gefundeneBilder.push(ergebnis);
+        for (const eintrag of dateien) {
 
+            if (typeof eintrag !== "string" || !eintrag.trim()) {
+                continue;
+            }
+
+            const dateiname = eintrag.trim();
+            const url = dateiUrl(config.ordner, dateiname);
+            const endung = dateiname.split(".").pop().toLowerCase();
+            const id = config.idPrefix + "-" + anzahlAngezeigt;
+
+            if (endung === "pdf") {
+                pdfAnzeigen(container, url, id, config.titel);
+                anzahlAngezeigt++;
+            }
+            else if (["jpg", "jpeg", "png", "webp"].includes(endung)) {
+                bildAnzeigen(container, url, config.titel);
+                anzahlAngezeigt++;
+            }
+            else {
+                console.warn("Nicht unterstützte Datei:", url.href);
+            }
+
+            if (!config.mehrere && anzahlAngezeigt > 0) {
+                break;
+            }
         }
 
+        if (anzahlAngezeigt === 0 && konfiguration && konfiguration.fallback) {
+
+            const fallbackName = String(konfiguration.fallback).trim();
+            const fallbackUrl = dateiUrl(config.ordner, fallbackName);
+            const endung = fallbackName.split(".").pop().toLowerCase();
+
+            if (endung === "pdf") {
+                pdfAnzeigen(
+                    container,
+                    fallbackUrl,
+                    config.idPrefix + "-fallback",
+                    config.titel
+                );
+            }
+            else if (["jpg", "jpeg", "png", "webp"].includes(endung)) {
+                bildAnzeigen(container, fallbackUrl, config.titel);
+            }
+        }
+
+        if (anzahlAngezeigt === 0 && !konfiguration.fallback) {
+            meldung(container, "In diesem Bereich ist derzeit keine Datei eingetragen.");
+        }
     }
 
-    const aktionsPdfUrl = BASIS_URL + AKTIONEN_PDF;
-    const aktionsPdfVorhanden = await existiert(aktionsPdfUrl);
-
-    if (aktionsPdfVorhanden) {
-
-        pdfAnzeigen(
-            aktionsPdfUrl,
-            "pdf-aktionen",
-            "Aktionen Café Bistro Porta Gio"
-        );
-
-    }
-
-    for (const bild of gefundeneBilder) {
-
-        bildAnzeigen(
-            bild.url,
-            "Aktionsangebot Café Bistro Porta Gio"
-        );
-
-    }
-
-    if (!aktionsPdfVorhanden && gefundeneBilder.length === 0) {
-
-        pdfAnzeigen(
-            BASIS_URL + FALLBACK_PDF,
-            "pdf-keine-aktionen",
-            "Derzeit keine aktuellen Aktionen"
-        );
-
-    }
+    await Promise.all(bereiche.map(bereichLaden));
 
 })();
 </script>
