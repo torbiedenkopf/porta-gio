@@ -45,7 +45,7 @@ window.addEventListener("message", (event) => {
 <nav>
 <a href="#home">Start</a>
 <a href="#willkommen">Willkommen</a>
-<a href="#impressionen">Impressionen</a>
+<a href="#schatzkiste">Schatzkiste</a>
 <a href="#aktuell">Aktuelles</a>
 <a href="#menu">Speisekarte</a>
 <a href="#oeffnungszeiten">Öffnungszeiten</a>
@@ -113,12 +113,13 @@ window.addEventListener("message", (event) => {
 
 </section>
 
-<!-- IMPRESSIONEN -->
+<!-- SCHATZKISTE -->
 
-<section id="impressionen" class="container card">
-<h2>Impressionen</h2>
-<div id="impressionen-inhalt"></div>
+<section id="schatzkiste" class="container card">
+<h2>Schatzkiste</h2>
+<div id="schatzkiste-inhalt"></div>
 </section>
+
 <!-- AKTUELLES -->
 
 <section id="aktuell" class="container card">
@@ -270,7 +271,7 @@ cafebistro@portagio.de
      * index.html und PDF.js liegen auf der Hauptwebsite.
      * Dokumente und dateien.json liegen auf Netlify:
      *
-	 *   https://portal.portagio.de/impressionen
+	 *   https://portal.portagio.de/schatzkiste/
      *   https://portal.portagio.de/specials/
      *   https://portal.portagio.de/menu/
      *   https://portal.portagio.de/business_hours/
@@ -281,10 +282,10 @@ cafebistro@portagio.de
 
     const bereiche = [
         {
-            ordner: "impressionen/",
-            containerId: "impressionen-inhalt",
-            idPrefix: "impressionen",
-            titel: "Impressionen Café Bistro Porta Gio",
+            ordner: "treasure/",
+            containerId: "schatzkiste-inhalt",
+            idPrefix: "schatzkiste",
+            titel: "Schatzkiste Café Bistro Porta Gio",
             mehrere: true
         },
         {
